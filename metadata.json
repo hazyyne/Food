@@ -1,0 +1,6 @@
+{
+  "name": "Food - Hôm Nay Nấu Gì?",
+  "description": "Gợi ý 3 món ăn chuẩn kinh tế sinh viên từ nguyên liệu có sẵn, kèm chi phí ước tính và lưu món yêu thích.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
