@@ -23,13 +23,15 @@ import {
   Info
 } from 'lucide-react';
 import { EAT_OUT_DISHES, NEARBY_RESTAURANTS, UNIVERSITY_AREAS } from '../data/eatout';
+import { DRINKS_DATABASE } from '../data/drinks';
 import { EatOutDish, NearbyRestaurant, UniversityArea } from '../types/eatout';
+import { Drink, DrinkOrigin } from '../types/drink';
 import { formatVND } from '../utils/matching';
 
 interface EatOutSlideBarProps {
   isOpen: boolean;
   onClose: () => void;
-  initialTab?: 'dishes' | 'places';
+  initialTab?: 'dishes' | 'drinks' | 'places';
 }
 
 export const EatOutSlideBar: React.FC<EatOutSlideBarProps> = ({
@@ -37,10 +39,14 @@ export const EatOutSlideBar: React.FC<EatOutSlideBarProps> = ({
   onClose,
   initialTab = 'dishes'
 }) => {
-  const [activeTab, setActiveTab] = useState<'dishes' | 'places'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'dishes' | 'drinks' | 'places'>(initialTab);
   const [dishCategory, setDishCategory] = useState<string>('all');
   const [dishPriceFilter, setDishPriceFilter] = useState<'all' | 'under25' | 'under35'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Tab Đồ Uống state
+  const [drinkOriginFilter, setDrinkOriginFilter] = useState<'all' | DrinkOrigin>('all');
+  const [expandedDrinkId, setExpandedDrinkId] = useState<string | null>(null);
 
   // Quán ăn & Google Maps
   const [selectedArea, setSelectedArea] = useState<UniversityArea>(UNIVERSITY_AREAS[0]);
@@ -173,31 +179,45 @@ export const EatOutSlideBar: React.FC<EatOutSlideBarProps> = ({
         </div>
 
         {/* Tab Navigation Switches */}
-        <div className="flex border-b border-stone-200 bg-stone-50 px-4 pt-3 gap-2">
+        <div className="flex border-b border-stone-200 bg-stone-50 px-2 sm:px-4 pt-3 gap-1 sm:gap-2 overflow-x-auto">
           <button
             onClick={() => setActiveTab('dishes')}
-            className={`flex-1 pb-3 text-sm font-semibold flex items-center justify-center space-x-2 border-b-2 transition-all cursor-pointer ${
+            className={`px-3 pb-3 text-xs sm:text-sm font-semibold flex items-center justify-center space-x-1.5 border-b-2 transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'dishes'
                 ? 'border-amber-600 text-amber-700 font-bold bg-white rounded-t-lg shadow-xs'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
             }`}
           >
-            <span>🍔 Món Ăn Ngoài Nhanh</span>
-            <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">
+            <span>🍔 Món Ăn Ngoài</span>
+            <span className="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded-full">
               {EAT_OUT_DISHES.length}
             </span>
           </button>
 
           <button
-            onClick={() => setActiveTab('places')}
-            className={`flex-1 pb-3 text-sm font-semibold flex items-center justify-center space-x-2 border-b-2 transition-all cursor-pointer ${
-              activeTab === 'places'
-                ? 'border-amber-600 text-amber-700 font-bold bg-white rounded-t-lg shadow-xs'
+            onClick={() => setActiveTab('drinks')}
+            className={`px-3 pb-3 text-xs sm:text-sm font-semibold flex items-center justify-center space-x-1.5 border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'drinks'
+                ? 'border-teal-600 text-teal-700 font-bold bg-white rounded-t-lg shadow-xs'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
             }`}
           >
-            <MapIcon className="w-4 h-4 text-emerald-600" />
-            <span>📍 Google Maps & Quán Gần Đây</span>
+            <span>🥤 Đồ Uống (Tự Pha/Quán)</span>
+            <span className="text-[10px] bg-teal-100 text-teal-800 px-1.5 py-0.2 rounded-full">
+              {DRINKS_DATABASE.length}
+            </span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('places')}
+            className={`px-3 pb-3 text-xs sm:text-sm font-semibold flex items-center justify-center space-x-1.5 border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'places'
+                ? 'border-blue-600 text-blue-700 font-bold bg-white rounded-t-lg shadow-xs'
+                : 'border-transparent text-stone-500 hover:text-stone-800'
+            }`}
+          >
+            <MapIcon className="w-3.5 h-3.5 text-blue-600" />
+            <span>📍 Google Maps Quán</span>
           </button>
         </div>
 
@@ -394,7 +414,160 @@ export const EatOutSlideBar: React.FC<EatOutSlideBarProps> = ({
           </div>
         )}
 
-        {/* Tab 2: Quán Ăn Ở Gần & Google Maps */}
+        {/* Tab 2: Ô Đồ Uống (Tự Pha Tại Nhà & Mua Quán Gần) */}
+        {activeTab === 'drinks' && (
+          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 bg-stone-50/60">
+            {/* Lọc nguồn gốc đồ uống */}
+            <div className="bg-white p-3.5 rounded-xl border border-stone-200 shadow-xs space-y-2.5">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-stone-700">Chọn chế độ thức uống:</span>
+                <span className="text-teal-700 font-semibold">{DRINKS_DATABASE.length} món sẵn sàng</span>
+              </div>
+              <div className="flex bg-stone-100 p-1 rounded-xl">
+                <button
+                  onClick={() => setDrinkOriginFilter('all')}
+                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                    drinkOriginFilter === 'all'
+                      ? 'bg-white text-stone-900 shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                >
+                  Tất cả
+                </button>
+                <button
+                  onClick={() => setDrinkOriginFilter('homemade')}
+                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                    drinkOriginFilter === 'homemade'
+                      ? 'bg-emerald-600 text-white shadow-xs'
+                      : 'text-stone-600 hover:text-emerald-700'
+                  }`}
+                >
+                  🏠 Tự Làm (~3k-7k)
+                </button>
+                <button
+                  onClick={() => setDrinkOriginFilter('nearby_shop')}
+                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                    drinkOriginFilter === 'nearby_shop'
+                      ? 'bg-amber-600 text-white shadow-xs'
+                      : 'text-stone-600 hover:text-amber-700'
+                  }`}
+                >
+                  🏪 Mua Quán Gần
+                </button>
+              </div>
+            </div>
+
+            {/* Banner mẹo đồ uống */}
+            <div className="bg-teal-50 border border-teal-200 rounded-xl p-3 flex items-start space-x-2.5 text-xs text-teal-950">
+              <Sparkles className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+              <div>
+                <b>Tự pha tại nhà</b> chỉ tốn từ 2k - 6k (rẻ hơn 80% so với mua ngoài). Hoặc bấm <b>"Tìm Trên Google Maps"</b> để dẫn đường đến tiệm trà, cafe, nước mía gần bạn nhất!
+              </div>
+            </div>
+
+            {/* Danh sách thẻ đồ uống */}
+            <div className="space-y-3.5">
+              {DRINKS_DATABASE.filter((d) => drinkOriginFilter === 'all' || d.origin === drinkOriginFilter).map((drink) => {
+                const isExpanded = expandedDrinkId === drink.id;
+                const isHomemade = drink.origin === 'homemade';
+
+                return (
+                  <div
+                    key={drink.id}
+                    className="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex flex-col sm:flex-row">
+                      <div className="sm:w-40 h-32 sm:h-auto relative shrink-0 bg-stone-100">
+                        <img
+                          src={drink.image}
+                          alt={drink.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded shadow-xs text-white bg-stone-900/80">
+                          {isHomemade ? '🏠 Tự pha' : '🏪 Mua quán'}
+                        </div>
+                        <div className="absolute top-2 right-2 text-[10px] font-bold px-1.5 py-0.5 rounded bg-stone-900/80 text-white flex items-center gap-0.5">
+                          <Flame className="w-3 h-3 text-orange-400" />
+                          <span>{drink.calories} kcal</span>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-start justify-between gap-1">
+                            <h4 className="font-bold text-stone-900 text-sm">{drink.name}</h4>
+                            <span className="text-xs font-extrabold text-teal-700 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded shrink-0">
+                              {drink.costLabel}
+                            </span>
+                          </div>
+
+                          <p className="text-xs text-stone-600 mt-1 line-clamp-2 leading-relaxed">
+                            {drink.description}
+                          </p>
+
+                          <div className="mt-1.5 text-[11px] text-teal-800 flex items-center">
+                            <Sparkles className="w-3 h-3 text-teal-600 mr-1 shrink-0" />
+                            <span className="truncate">{drink.benefit}</span>
+                          </div>
+                        </div>
+
+                        {/* Nút hành động */}
+                        <div className="mt-3 pt-2 border-t border-stone-100 flex items-center gap-2">
+                          {isHomemade ? (
+                            <button
+                              type="button"
+                              onClick={() => setExpandedDrinkId(isExpanded ? null : drink.id)}
+                              className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-1.5 px-3 rounded-lg flex items-center justify-center space-x-1 transition-colors cursor-pointer"
+                            >
+                              <span>{isExpanded ? 'Ẩn công thức' : 'Xem công thức 3 bước (~5k)'}</span>
+                            </button>
+                          ) : (
+                            <a
+                              href={getGoogleMapsSearchUrl(drink.googleMapsQuery || `${drink.name} gần đây`)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-1.5 px-3 rounded-lg flex items-center justify-center space-x-1 transition-colors shadow-xs"
+                            >
+                              <Navigation className="w-3 h-3" />
+                              <span>Tìm Quán Trên Google Maps</span>
+                              <ExternalLink className="w-3 h-3 ml-0.5 opacity-80" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Công thức mở rộng cho món tự làm */}
+                    {isHomemade && isExpanded && (
+                      <div className="p-3.5 bg-emerald-50/60 border-t border-emerald-100 text-xs space-y-2.5 animate-in fade-in">
+                        <div>
+                          <span className="font-bold text-emerald-950">Nguyên liệu: </span>
+                          <span className="text-stone-700">{drink.ingredients?.join(' · ')}</span>
+                        </div>
+                        <div>
+                          <div className="font-bold text-emerald-950 mb-1">Cách pha:</div>
+                          <ol className="list-decimal list-inside space-y-1 text-stone-700">
+                            {drink.instructions?.map((ins, i) => (
+                              <li key={i}>{ins}</li>
+                            ))}
+                          </ol>
+                        </div>
+                        {drink.studentTip && (
+                          <div className="text-[11px] text-emerald-900 bg-white p-2 rounded border border-emerald-200">
+                            💡 <b>Mẹo sinh viên:</b> {drink.studentTip}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Quán Ăn Ở Gần & Google Maps */}
         {activeTab === 'places' && (
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 bg-stone-50/60">
             {/* Bộ chọn khu vực đại học / Lấy toạ độ GPS */}

@@ -39,6 +39,7 @@ import { AuthModal } from './components/AuthModal';
 import { ScheduleMealModal } from './components/ScheduleMealModal';
 import { MealCalendarView } from './components/MealCalendarView';
 import { EatOutSlideBar } from './components/EatOutSlideBar';
+import { DrinksSection } from './components/DrinksSection';
 import { useAuth } from './contexts/AuthContext';
 import { db } from './firebase';
 
@@ -49,7 +50,7 @@ const SCHEDULED_MEALS_STORAGE_KEY = 'food_student_meal_schedules_v1';
 export default function App() {
   const { currentUser, logout } = useAuth();
 
-  const [activeTab, setActiveTab] = useState<'suggest' | 'calendar' | 'favorites'>('suggest');
+  const [activeTab, setActiveTab] = useState<'suggest' | 'calendar' | 'drinks' | 'favorites'>('suggest');
   const [ingredientText, setIngredientText] = useState<string>('trứng, cà chua');
   const [selectedTags, setSelectedTags] = useState<string[]>(['trứng', 'cà chua']);
   const [budgetFilter, setBudgetFilter] = useState<BudgetFilter>('all');
@@ -532,7 +533,7 @@ export default function App() {
               onClick={() => setActiveTab('calendar')}
               className={`px-3 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === 'calendar'
-                  ? 'bg-amber-50 text-amber-900'
+                  ? 'bg-amber-50 text-amber-900 font-bold'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
               }`}
             >
@@ -543,6 +544,23 @@ export default function App() {
                   {scheduledMeals.length}
                 </span>
               )}
+            </button>
+
+            {/* Tab Đồ Uống: Tự làm & Quán gần */}
+            <button
+              type="button"
+              onClick={() => setActiveTab('drinks')}
+              className={`px-3 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'drinks'
+                  ? 'bg-teal-50 text-teal-900 font-bold'
+                  : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
+              }`}
+            >
+              <span className="text-base">🥤</span>
+              <span>Đồ uống</span>
+              <span className="hidden xl:inline text-[10px] bg-teal-600 text-white px-1.5 py-0.2 rounded-full font-bold">
+                Tự pha/Quán
+              </span>
             </button>
 
             {/* Tab Món đã lưu */}
@@ -740,6 +758,13 @@ export default function App() {
                 >
                   <span>Xem món ăn ngoài</span>
                   <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('drinks')}
+                  className="px-3 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer whitespace-nowrap"
+                >
+                  <span>🥤 Ô Đồ uống</span>
                 </button>
                 <button
                   type="button"
@@ -1028,8 +1053,16 @@ export default function App() {
               onOpenWeeklyShoppingList={handleOpenWeeklyShoppingList}
             />
           </section>
+        ) : activeTab === 'drinks' ? (
+          /* TAB 3: Ô ĐỒ UỐNG (TỰ LÀM TẠI NHÀ HOẶC MUA QUÁN GẦN) */
+          <DrinksSection
+            onOpenGoogleMapsSearch={(query) => {
+              setEatOutInitialTab('places');
+              setIsEatOutOpen(true);
+            }}
+          />
         ) : (
-          /* TAB 3: MÓN ĐÃ LƯU */
+          /* TAB 4: MÓN ĐÃ LƯU */
           <section aria-labelledby="favorites-heading">
             <h2 id="favorites-heading" className="sr-only">
               Danh sách món đã lưu
@@ -1075,6 +1108,23 @@ export default function App() {
               className="hover:text-amber-700 transition-colors cursor-pointer"
             >
               Lịch ăn uống
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('drinks')}
+              className="hover:text-amber-700 transition-colors cursor-pointer"
+            >
+              Ô Đồ uống
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEatOutInitialTab('dishes');
+                setIsEatOutOpen(true);
+              }}
+              className="hover:text-amber-700 transition-colors cursor-pointer"
+            >
+              Ăn ngoài & Maps
             </button>
             <button
               type="button"
