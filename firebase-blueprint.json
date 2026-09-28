@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with display name and email",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "email"]
+    },
+    "FavoriteDish": {
+      "title": "FavoriteDish",
+      "description": "User saved favorite dish recipe for quick meal planning",
+      "type": "object",
+      "properties": {
+        "dishId": { "type": "string" },
+        "userId": { "type": "string" },
+        "dishData": { "type": "object" },
+        "savedAt": { "type": "string" }
+      },
+      "required": ["dishId", "userId", "savedAt"]
+    },
+    "CookHistory": {
+      "title": "CookHistory",
+      "description": "Log of dish cooked count per user",
+      "type": "object",
+      "properties": {
+        "dishId": { "type": "string" },
+        "dishName": { "type": "string" },
+        "count": { "type": "number" },
+        "lastCookedAt": { "type": "string" }
+      },
+      "required": ["dishId", "count", "lastCookedAt"]
+    },
+    "MealSchedule": {
+      "title": "MealSchedule",
+      "description": "Scheduled meal entry for calendar meal planning",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "mealSlot": { "type": "string" },
+        "dishId": { "type": "string" },
+        "dishName": { "type": "string" },
+        "dishCost": { "type": "number" },
+        "calories": { "type": "number" },
+        "dishData": { "type": "object" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "date", "mealSlot", "dishId", "dishName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "entity": "User",
+      "description": "User profile document accessible by owner"
+    },
+    "/users/{userId}/favorites/{dishId}": {
+      "entity": "FavoriteDish",
+      "description": "Saved favorite dishes subcollection per user"
+    },
+    "/users/{userId}/cook_history/{dishId}": {
+      "entity": "CookHistory",
+      "description": "Number of times a user cooked a specific dish"
+    },
+    "/users/{userId}/meal_schedules/{scheduleId}": {
+      "entity": "MealSchedule",
+      "description": "Scheduled meal entries on user calendar"
+    }
+  }
+}

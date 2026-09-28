@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Test connection doc
+    match /test/connection {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // User profile document
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // Subcollection for user's favorite recipes
+      match /favorites/{dishId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Subcollection for cook count history
+      match /cook_history/{dishId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Subcollection for meal calendar schedules
+      match /meal_schedules/{scheduleId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}

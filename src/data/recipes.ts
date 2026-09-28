@@ -13,6 +13,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món mặn',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 215,
+      protein: 14.2,
+      carbs: 8.5,
+      fat: 13.8,
+      fiber: 2.1,
+    },
     steps: [
       'Đánh tan 2 quả trứng với chút hạt nêm và tiêu. Phi thơm đầu hành rồi đổ trứng vào đảo tơi vừa chín tới thì trút ra đĩa.',
       'Cho tiếp cà chua bổ múi cau vào chảo, dầm mềm với xíu nước mắm và đường tạo sốt sền sệt.',
@@ -31,6 +38,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món mặn',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 285,
+      protein: 18.5,
+      carbs: 3.2,
+      fat: 22.0,
+      fiber: 0.8,
+    },
     steps: [
       'Đập trứng vào bát, thêm thịt băm nhỏ, hành lá cắt nhuyễn, 1 thìa cà phê nước mắm, xíu tiêu và 1 thìa nước lọc rồi đánh thật bông.',
       'Làm nóng chảo với 1 thìa dầu ăn, dầu nóng già thì trút hỗn hợp trứng vào.',
@@ -49,6 +63,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món canh',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 125,
+      protein: 7.8,
+      carbs: 6.9,
+      fat: 7.2,
+      fiber: 1.8,
+    },
     steps: [
       'Phi thơm hành, cho cà chua thái lát vào xào chín mềm để ra màu đỏ đẹp tự nhiên.',
       'Chế 400ml nước vào đun sôi, nêm gia vị bột canh, mì chính vừa miệng.',
@@ -67,6 +88,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 15,
     category: 'món mặn',
     servings: '2 bữa sinh viên',
+    nutrition: {
+      calories: 260,
+      protein: 21.0,
+      carbs: 7.5,
+      fat: 16.5,
+      fiber: 1.2,
+    },
     steps: [
       'Luộc trứng trong nước sôi đúng 6 phút rồi vớt ra ngâm ngay vào âu nước đá lạnh để bóc vỏ dễ dàng.',
       'Pha nước sốt gồm nước tương, nước lọc, đường tỉ lệ 1:1:0.8, khuấy tan rồi thêm tỏi ớt băm, hành tây thái mỏng.',
@@ -87,6 +115,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 12,
     category: 'món mặn',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 245,
+      protein: 16.5,
+      carbs: 11.8,
+      fat: 15.0,
+      fiber: 3.2,
+    },
     steps: [
       'Đậu phụ cắt miếng vuông vừa ăn, đem rán vàng đều các mặt rồi vớt ra.',
       'Cà chua thái hạt lựu, phi thơm tỏi băm rồi cho cà chua vào đảo nhuyễn cùng 1 thìa mắm, 1 thìa đường.',
@@ -105,6 +140,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món mặn',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 290,
+      protein: 19.5,
+      carbs: 6.2,
+      fat: 21.0,
+      fiber: 2.4,
+    },
     steps: [
       'Đậu thấm khô nước bằng khăn giấy để khi rán không bị bắn dầu, cắt miếng quân cờ.',
       'Dầu sôi già thì thả đậu vào chiên ngập dầu lửa vừa đến khi vàng ruộm giòn tan.',
@@ -123,6 +165,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 20,
     category: 'món mặn',
     servings: '2 người',
+    nutrition: {
+      calories: 345,
+      protein: 26.0,
+      carbs: 10.5,
+      fat: 22.5,
+      fiber: 2.8,
+    },
     steps: [
       'Thịt băm ướp hành tím, hạt nêm, tiêu. Đậu phụ khía giữa hoặc khoét rỗng ruột rồi nhồi nhân thịt vào.',
       'Chiên sơ mặt có thịt cho se lại rồi gắp ra đĩa.',
@@ -143,6 +192,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món nhanh',
     servings: '1 người',
+    nutrition: {
+      calories: 485,
+      protein: 15.5,
+      carbs: 58.0,
+      fat: 21.5,
+      fiber: 3.8,
+    },
     steps: [
       'Trần mì qua nước sôi khoảng 1 phút cho sợi tơi ra rồi vớt ngay xả nước lạnh để mì không bị nhũn.',
       'Phi thơm tỏi, cho xúc xích thái lát và rau cải vào đảo nhanh tay ở lửa lớn.',
@@ -161,6 +217,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 7,
     category: 'món nhanh',
     servings: '1 người',
+    nutrition: {
+      calories: 425,
+      protein: 16.2,
+      carbs: 52.4,
+      fat: 17.5,
+      fiber: 2.9,
+    },
     steps: [
       'Xào cà chua mềm với chút dầu ăn để ra nước màu đỏ cam hấp dẫn.',
       'Thêm 350ml nước đun sôi bùng, cho gói rau sấy và nửa gói muối mì tôm vào.',
@@ -181,6 +244,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 12,
     category: 'món mặn',
     servings: '2 người',
+    nutrition: {
+      calories: 380,
+      protein: 28.5,
+      carbs: 5.2,
+      fat: 27.0,
+      fiber: 0.5,
+    },
     steps: [
       'Cho thịt băm vào chảo khô, đảo lửa vừa cho thịt tự tiết mỡ và săn lại.',
       'Khi thịt bắt đầu xém vàng cạnh, cho hành tỏi băm vào phi thơm cùng mỡ thịt.',
@@ -199,6 +269,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 15,
     category: 'món canh',
     servings: '2 người',
+    nutrition: {
+      calories: 160,
+      protein: 14.5,
+      carbs: 7.8,
+      fat: 8.2,
+      fiber: 3.1,
+    },
     steps: [
       'Bí đao gọt vỏ, bỏ ruột, cắt miếng mỏng vừa ăn. Thịt băm ướp chút hạt nêm.',
       'Phi thơm hành tím, xào săn thịt băm rồi đổ 500ml nước vào đun sôi, hớt sạch bọt.',
@@ -217,6 +294,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 12,
     category: 'món canh',
     servings: '2 người',
+    nutrition: {
+      calories: 150,
+      protein: 16.0,
+      carbs: 7.2,
+      fat: 6.4,
+      fiber: 4.2,
+    },
     steps: [
       'Rau ngót tuốt lá, rửa sạch rồi vò nhẹ bằng tay để lá rau mềm và tiết vị ngọt khi nấu.',
       'Phi thơm hành khô, xào thịt băm chín tới rồi cho rau ngót vào xào cùng 1 phút với chút muối.',
@@ -235,6 +319,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 15,
     category: 'món mặn',
     servings: '2 người',
+    nutrition: {
+      calories: 450,
+      protein: 26.2,
+      carbs: 6.0,
+      fat: 36.5,
+      fiber: 0.3,
+    },
     steps: [
       'Thịt ba chỉ thái miếng mỏng vừa. Cho vào chảo đảo không dầu đến khi mỡ tươm ra và mép thịt xém vàng.',
       'Chắt bớt phần mỡ thừa ra chén (để dành xào rau), giữ lại thịt trong chảo.',
@@ -255,6 +346,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 12,
     category: 'món cơm',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 520,
+      protein: 18.0,
+      carbs: 68.5,
+      fat: 19.2,
+      fiber: 2.1,
+    },
     steps: [
       'Đập 1 quả trứng trực tiếp vào bát cơm nguội, dùng bao tay bóp đều để từng hạt cơm được áo một lớp lòng đỏ vàng óng.',
       'Phi thơm đầu hành, xào xúc xích thái hạt lựu chín thơm rồi trút ra đĩa.',
@@ -273,6 +371,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món cơm',
     servings: '1 người',
+    nutrition: {
+      calories: 440,
+      protein: 15.2,
+      carbs: 65.0,
+      fat: 14.5,
+      fiber: 4.1,
+    },
     steps: [
       'Cắt nhỏ kim chi, phi hành thơm rồi xào kim chi với xíu đường để dịu bớt vị chua gắt.',
       'Cho cơm nguội vào dằm tơi, đảo đều tay cho cơm ngấm màu đỏ đẹp từ nước kim chi.',
@@ -293,6 +398,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món xào',
     servings: '2 người',
+    nutrition: {
+      calories: 95,
+      protein: 4.2,
+      carbs: 6.5,
+      fat: 6.8,
+      fiber: 4.5,
+    },
     steps: [
       'Rau muống nhặt khúc non, rửa sạch để ráo. Tỏi bóc vỏ đập dập chia làm 2 phần.',
       'Đun nước sôi già với xíu muối, trần nhanh rau muống trong 30 giây rồi vớt ra ngâm nước lạnh để rau luôn xanh giòn.',
@@ -311,6 +423,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món canh',
     servings: '2 người',
+    nutrition: {
+      calories: 45,
+      protein: 4.0,
+      carbs: 7.0,
+      fat: 0.8,
+      fiber: 4.6,
+    },
     steps: [
       'Đun sôi 600ml nước với nửa thìa muối hạt. Nước sôi bùng thả rau ngập nước, luộc lửa lớn 3-4 phút.',
       'Vớt rau ra đĩa tãi đều để rau nguội nhanh không bị đỏ úa màu.',
@@ -329,6 +448,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món xào',
     servings: '2 người',
+    nutrition: {
+      calories: 110,
+      protein: 3.5,
+      carbs: 12.0,
+      fat: 6.0,
+      fiber: 5.2,
+    },
     steps: [
       'Bắp cải thái sợi vừa ăn, rửa sạch để ráo. Cà chua bổ múi cau.',
       'Phi thơm tỏi băm, xào cà chua mềm tạo sốt hồng nhạt.',
@@ -347,6 +473,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món canh',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 60,
+      protein: 2.5,
+      carbs: 10.2,
+      fat: 1.0,
+      fiber: 4.1,
+    },
     steps: [
       'Bắp cải thái chỉ, gừng cạo vỏ đập dập.',
       'Đun sôi 400ml nước với xíu muối, cho gừng và bắp cải vào nấu sôi 3 phút.',
@@ -365,6 +498,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 15,
     category: 'món mặn',
     servings: '2 người',
+    nutrition: {
+      calories: 320,
+      protein: 16.5,
+      carbs: 34.0,
+      fat: 14.0,
+      fiber: 3.8,
+    },
     steps: [
       'Khoai tây gọt vỏ, thái con chì hoặc thái lát mỏng, ngâm nước muối loãng 5 phút cho hết nhựa rồi vớt ra.',
       'Phi thơm tỏi, xào săn thịt băm với chút hạt nêm rồi trút ra.',
@@ -383,6 +523,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 18,
     category: 'món canh',
     servings: '2 người',
+    nutrition: {
+      calories: 230,
+      protein: 16.2,
+      carbs: 24.5,
+      fat: 8.0,
+      fiber: 4.2,
+    },
     steps: [
       'Khoai tây, cà rốt gọt vỏ cắt khối vuông nhỏ. Thịt băm vo viên tròn với chút hạt nêm.',
       'Đun sôi 500ml nước, thả từng viên thịt băm vào nấu cho ngọt nước, hớt bọt.',
@@ -403,6 +550,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món mặn',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 365,
+      protein: 26.5,
+      carbs: 8.8,
+      fat: 24.5,
+      fiber: 1.8,
+    },
     steps: [
       'Phi thơm hành tây hoặc đầu hành thái mỏng trong chảo nhỏ.',
       'Đổ nguyên hộp cá sốt cà vào chảo đun sôi lăn tăn 2 phút.',
@@ -421,6 +575,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món canh',
     servings: '2 người',
+    nutrition: {
+      calories: 110,
+      protein: 12.0,
+      carbs: 9.0,
+      fat: 2.2,
+      fiber: 3.0,
+    },
     steps: [
       'Tép khô rửa qua nước cho sạch bụi cát, để ráo. Bí xanh gọt vỏ thái mỏng.',
       'Phi thơm hành tím, cho tép khô vào đảo thơm nức mũi.',
@@ -439,6 +600,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 10,
     category: 'món xào',
     servings: '2 người',
+    nutrition: {
+      calories: 250,
+      protein: 18.2,
+      carbs: 11.0,
+      fat: 15.0,
+      fiber: 4.2,
+    },
     steps: [
       'Nấm kim châm cắt gốc, xé nhỏ, rửa sạch để ráo nước.',
       'Phi thơm tỏi, xào thịt băm chín tới với 1 thìa dầu hào và xíu hạt nêm.',
@@ -457,6 +625,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 5,
     category: 'món nhanh',
     servings: '2 người',
+    nutrition: {
+      calories: 55,
+      protein: 1.8,
+      carbs: 11.2,
+      fat: 0.5,
+      fiber: 2.1,
+    },
     steps: [
       'Dưa chuột rửa sạch chà mủ 2 đầu, chẻ đôi rồi thái lát xéo vừa ăn.',
       'Trộn vào dưa 1 thìa đường, 1/2 thìa muối xóc đều để 5 phút cho ra bớt nước rồi chắt bỏ nước.',
@@ -475,6 +650,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 25,
     category: 'món mặn',
     servings: '2 - 3 bữa',
+    nutrition: {
+      calories: 480,
+      protein: 30.5,
+      carbs: 12.0,
+      fat: 34.0,
+      fiber: 0.4,
+    },
     steps: [
       'Thịt thái con chì ướp hành khô băm, nước mắm, đường, tiêu trong 15 phút. Trứng cút bóc vỏ chiên sơ qua dầu cho dai vỏ.',
       'Thắng 1 thìa đường với chút dầu ăn tạo màu cánh gián đẹp mắt, trút thịt vào đảo săn đều.',
@@ -493,6 +675,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món canh',
     servings: '2 người',
+    nutrition: {
+      calories: 85,
+      protein: 5.2,
+      carbs: 12.0,
+      fat: 2.0,
+      fiber: 3.4,
+    },
     steps: [
       'Cà chua thái múi cau xào mềm với chút dầu ăn để tạo màu nước canh.',
       'Đổ 400ml nước vào đun sôi, nêm nước mắm, hạt nêm và nước cốt me/chanh cho vừa vị chua thanh.',
@@ -511,6 +700,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 8,
     category: 'món mặn',
     servings: '2 người',
+    nutrition: {
+      calories: 265,
+      protein: 17.5,
+      carbs: 7.0,
+      fat: 19.5,
+      fiber: 2.2,
+    },
     steps: [
       'Cắt nhỏ hành lá để vào bát cùng ớt băm, 2 thìa nước mắm và 1 thìa đường.',
       'Đậu rán lướt ván (chỉ rán vàng non bên ngoài, ruột vẫn mềm mọng).',
@@ -529,6 +725,13 @@ export const RECIPES_DATABASE: Dish[] = [
     cookingTimeMinutes: 12,
     category: 'món nhanh',
     servings: '1 - 2 người',
+    nutrition: {
+      calories: 295,
+      protein: 16.5,
+      carbs: 42.0,
+      fat: 6.8,
+      fiber: 1.5,
+    },
     steps: [
       'Cho cơm nguội vào nồi cùng 3 bát nước lọc, dùng muôi khuấy dầm cho hạt cơm tơi ra, đun sôi lửa vừa.',
       'Thịt băm ướp nước mắm, tiêu và vài sợi gừng thái chỉ.',
